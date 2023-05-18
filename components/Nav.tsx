@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC } from "react";
 
 interface NavProps {}
@@ -6,6 +7,8 @@ interface NavProps {}
 const Nav: FC<NavProps> = ({}) => {
   const inactiveLink = "flex gap-1 p-1";
   const activeLink = inactiveLink + " bg-white text-blue-900 rounded-l-lg";
+  const router = useRouter();
+
   return (
     <aside className="text-white p-4 pr-0">
       <Link href={"/"} className="flex gap-1 mb-4 mr-2">
@@ -26,7 +29,10 @@ const Nav: FC<NavProps> = ({}) => {
         <span>Ecommerce Admin</span>
       </Link>
       <nav className="flex flex-col gap-2">
-        <Link href={"/"} className={activeLink}>
+        <Link
+          href={"/"}
+          className={router.pathname === "/" ? activeLink : inactiveLink}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -43,7 +49,12 @@ const Nav: FC<NavProps> = ({}) => {
           </svg>
           Dashboard
         </Link>
-        <Link href={"/products"} className={inactiveLink}>
+        <Link
+          href={"/products"}
+          className={
+            router.pathname === "/products" ? activeLink : inactiveLink
+          }
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -60,7 +71,10 @@ const Nav: FC<NavProps> = ({}) => {
           </svg>
           Products
         </Link>
-        <Link href={"/orders"} className={inactiveLink}>
+        <Link
+          href={"/orders"}
+          className={router.pathname === "/orders" ? activeLink : inactiveLink}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -77,7 +91,12 @@ const Nav: FC<NavProps> = ({}) => {
           </svg>
           Orders
         </Link>
-        <Link href={"/settings"} className={inactiveLink}>
+        <Link
+          href={"/settings"}
+          className={
+            router.pathname === "/settings" ? activeLink : inactiveLink
+          }
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
